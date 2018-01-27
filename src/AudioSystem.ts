@@ -1,5 +1,5 @@
 export default class  AudioSystem {
-    private oscillator;
+    private oscillator: OscillatorNode;
     private context: AudioContext;
     private gain: GainNode;
     
@@ -15,11 +15,21 @@ export default class  AudioSystem {
         this.gain.connect(this.context.destination);
     }
 
-    run() {
+    run(): void {
         var now = (this.context as any).currentTime;
         this.gain.gain.setValueAtTime(1, now);
         this.gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
         this.oscillator.start(now);
         this.oscillator.stop(now + 0.5);
+    }
+
+    note(freq: number) {
+        var oscillator = this.context.createOscillator();
+        oscillator.frequency.value = freq;
+        oscillator.connect(this.context.destination);
+        var now = (this.context as any).currentTime;
+        oscillator.frequency.value = freq;
+        oscillator.start(now);
+        oscillator.stop(now + 0.5);
     }
 }
