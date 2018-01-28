@@ -1,10 +1,13 @@
 export default class  AudioSystem {
+    context: AudioContext;
     private oscillator: OscillatorNode;
-    private context: AudioContext;
     private gain: GainNode;
+    private bufferSource: AudioBufferSourceNode;
     
     constructor() {
         this.context = new ((window as any).AudioContext || (window as any).webkitAudioContext)() as AudioContext;
+        this.bufferSource = this.context.createBufferSource();
+        this.bufferSource.connect(this.context.destination);
 
         this.oscillator = this.context.createOscillator();
         
@@ -13,6 +16,11 @@ export default class  AudioSystem {
         this.gain = this.context.createGain();
         this.oscillator.connect(this.gain);
         this.gain.connect(this.context.destination);
+    }
+
+    playback(buffer: AudioBuffer) {
+        this.bufferSource.buffer = buffer;
+        this.bufferSource.start();
     }
 
     run(): void {

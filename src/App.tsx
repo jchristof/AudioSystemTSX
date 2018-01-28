@@ -19,11 +19,26 @@ class Button extends React.Component<Props, State> {
 
 class App extends React.Component {
   private audioSystem: AudioSystem;
+  private audioBuffer: AudioBuffer;
+  private resp: any;
 
   constructor(props: {}, context?: any) {
     super(props, context);
     this.audioSystem = new AudioSystem();
     this.audioSystem.run();
+
+    var request = new XMLHttpRequest();
+    
+    request.open('get', 'audio/snare.wav', true);
+    request.responseType = 'arraybuffer';
+    request.onload = () => {
+        this.resp = request.response;
+        this.audioSystem.context.decodeAudioData(this.resp, (buffer: AudioBuffer) => {
+          this.audioBuffer = buffer;
+          this.audioSystem.playback(this.audioBuffer);
+      });
+    };
+    request.send();
   }
 
   render() {
