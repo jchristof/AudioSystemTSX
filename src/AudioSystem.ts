@@ -2,13 +2,9 @@ export default class  AudioSystem {
     context: AudioContext;
     private oscillator: OscillatorNode;
     private gain: GainNode;
-    private bufferSource: AudioBufferSourceNode;
     
     constructor() {
         this.context = new ((window as any).AudioContext || (window as any).webkitAudioContext)() as AudioContext;
-        this.bufferSource = this.context.createBufferSource();
-        this.bufferSource.connect(this.context.destination);
-
         this.oscillator = this.context.createOscillator();
         
         this.oscillator.type = 'sine';
@@ -19,8 +15,11 @@ export default class  AudioSystem {
     }
 
     playback(buffer: AudioBuffer) {
-        this.bufferSource.buffer = buffer;
-        this.bufferSource.start();
+        const bufferSource = this.context.createBufferSource();
+        bufferSource.connect(this.context.destination);
+
+        bufferSource.buffer = buffer;
+        bufferSource.start();
     }
 
     run(): void {
