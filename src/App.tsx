@@ -3,8 +3,7 @@ import './App.css';
 import AudioSystem from './AudioSystem';
 import AudioLoader from './AudioLoader';
 import SampleButton from './controls/SampleButton';
-
-const logo = require('./logo.svg');
+import Dial from './controls/Dial';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -42,10 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <Dial />
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
         <SampleButton 
           clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('snare'))} 
@@ -63,9 +59,6 @@ class App extends React.Component {
           clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('crash'))} 
           text="crash"
         />
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
       </div>
     );
   }
