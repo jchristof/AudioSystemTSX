@@ -1,0 +1,6 @@
+.SampleChannel-border {
+    display: block;
+    border: 1px solid rgb(167, 164, 164);
+    border-radius: 5px;
+    background: rgb(123, 124, 123);
+}
