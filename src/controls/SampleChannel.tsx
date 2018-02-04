@@ -16,7 +16,13 @@ type State = {
 };
 
 export default class SampleChannel extends React.Component<Props, State> {
- 
+    readonly bufferSource: AudioBufferSourceNode;
+    audioBuffer: AudioBuffer;
+
+    constructor(props: Props) {
+        super(props);
+      }
+
     render() {
         return (
             <div>
@@ -24,12 +30,21 @@ export default class SampleChannel extends React.Component<Props, State> {
             
             <SampleButton 
               clickFunction={
-                  () => this.props.audioSystem.playback(this.props.audioLoader.audio(this.props.sampleName))
+                  () => this.playBack()
                 } 
               text={this.props.sampleName}
             />
           </div>
         );
+    }
+
+    private playBack(): void {
+        if (this.audioBuffer == null) {
+            this.audioBuffer = this.props.audioLoader.audio(this.props.sampleName);
+        }
+        const bufferSource = this.props.audioSystem.bufferSource(this.audioBuffer);
+        bufferSource.connect(this.props.audioSystem.channelInput());
+        bufferSource.start();
     }
 
     private setVolume(id: string, value: number) {

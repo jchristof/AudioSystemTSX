@@ -14,6 +14,20 @@ export default class  AudioSystem {
         this.gain.connect(this.context.destination);
     }
 
+    audioContext(): AudioContext {
+        return this.context;
+    }
+
+    channelInput(): AudioNode {
+        return this.gain;
+    }
+
+    bufferSource(buffer: AudioBuffer): AudioBufferSourceNode {
+        const bufferSource = this.context.createBufferSource();
+        bufferSource.buffer = buffer;
+        return bufferSource;
+    }
+
     playback(buffer: AudioBuffer) {
         const bufferSource = this.context.createBufferSource();
         bufferSource.connect(this.context.destination);
