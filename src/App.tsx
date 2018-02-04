@@ -2,8 +2,7 @@ import * as React from 'react';
 import './App.css';
 import AudioSystem from './AudioSystem';
 import AudioLoader from './AudioLoader';
-import SampleButton from './controls/SampleButton';
-import Dial from './controls/Dial';
+import SampleChannel from './controls/SampleChannel';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -41,24 +40,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Dial />
+        <div className="column">
+          <SampleChannel sampleName={'snare'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
+        </div>
+        <div className="column">
+          <SampleChannel sampleName={'kick'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
+        </div>
+        <div className="column">
+          <SampleChannel sampleName={'crash'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
+        </div>
+          <div className="column">
+          <SampleChannel sampleName={'hat'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
+        </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
-        <SampleButton 
-          clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('snare'))} 
-          text="snare"
-        />
-        <SampleButton 
-          clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('kick'))} 
-          text="kick"
-        />
-        <SampleButton 
-          clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('hat'))} 
-          text="hat"
-        />
-        <SampleButton 
-          clickFunction={() => this.audioSystem.playback(this.audioLoader.audio('crash'))} 
-          text="crash"
-        />
       </div>
     );
   }
