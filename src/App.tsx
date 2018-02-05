@@ -3,6 +3,7 @@ import './App.css';
 import AudioSystem from './AudioSystem';
 import AudioLoader from './AudioLoader';
 import SampleChannel from './controls/SampleChannel';
+import ConvolverReverb from './effects/ConvolverReverb';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -26,6 +27,7 @@ class App extends React.Component {
     super(props, context);
     this.audioSystem = new AudioSystem();
     this.audioLoader = new AudioLoader();
+    this.audioSystem.setConvolver(new ConvolverReverb(this.audioSystem, this.audioLoader));
 
     this.load();
   }
@@ -34,7 +36,7 @@ class App extends React.Component {
     await this.audioLoader.load('snare', 'audio/snare.wav');
     await this.audioLoader.load('crash', 'audio/crash.wav');
     await this.audioLoader.load('kick', 'audio/kick.wav');
-    await this.audioLoader.load('hat', 'audio/hat.wav');
+    await this.audioLoader.load('hat', 'audio/hat.wav');  
   }
 
   render() {

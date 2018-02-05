@@ -11,10 +11,14 @@ export default class AudioLoader {
         return this.audioMap[name];
     }
 
-    async load(name: string, source: string) {
+    async load(name: string, source: string): Promise<AudioBuffer> {
+        if (this.audioMap.has(name)) {
+            return this.audioMap[name];
+        }
         const response = await fetch(source);
         const buffer = await response.arrayBuffer();
         this.audioMap[name] = await this.decode(buffer);
+        return this.audioMap[name];
     }
 
     private decode(arrayBuffer: ArrayBuffer): Promise<AudioBuffer> {

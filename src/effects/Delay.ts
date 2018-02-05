@@ -49,8 +49,4 @@ export default class Delay {
         }
 
     }
-
-    getToggleOutput(): boolean {
-        return this.outputGain.gain.value !== 0;
-    }
 }

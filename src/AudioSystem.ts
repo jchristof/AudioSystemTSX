@@ -1,3 +1,6 @@
+
+import ConvolverReverb from './effects/ConvolverReverb';
+
 export default class  AudioSystem {
     context: AudioContext;
     private oscillator: OscillatorNode;
@@ -11,7 +14,14 @@ export default class  AudioSystem {
         this.oscillator.frequency.value = 440;
         this.gain = this.context.createGain();
         this.oscillator.connect(this.gain);
+        
         this.gain.connect(this.context.destination);
+    }
+
+    setConvolver(convolver: ConvolverReverb) {
+        this.gain.disconnect(this.context.destination);
+        convolver.setInput(this.gain);
+        convolver.setOutput(this.context.destination);
     }
 
     audioContext(): AudioContext {
