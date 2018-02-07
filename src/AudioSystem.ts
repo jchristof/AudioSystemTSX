@@ -19,7 +19,7 @@ export default class  AudioSystem {
     }
 
     setConvolver(convolver: ConvolverReverb) {
-        this.gain.disconnect(this.context.destination);
+        // this.gain.disconnect(this.context.destination);
         convolver.setInput(this.gain);
         convolver.setOutput(this.context.destination);
     }

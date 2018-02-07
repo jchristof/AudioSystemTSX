@@ -34,7 +34,7 @@ export default class SampleChannel extends React.Component<Props, State> {
 
         this.delay = new Delay(props.audioSystem);
         this.delay.setOutput(this.channelGain); 
-      }
+    }
 
     render() {
         return (

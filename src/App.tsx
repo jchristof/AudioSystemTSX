@@ -4,6 +4,7 @@ import AudioSystem from './AudioSystem';
 import AudioLoader from './AudioLoader';
 import SampleChannel from './controls/SampleChannel';
 import ConvolverReverb from './effects/ConvolverReverb';
+import MixerChannel from './controls/MixerChannel';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -22,12 +23,14 @@ class Button extends React.Component<Props, State> {
 class App extends React.Component {
   private audioSystem: AudioSystem;
   private audioLoader: AudioLoader;
+  private convolver: ConvolverReverb;
 
   constructor(props: {}, context?: any) {
     super(props, context);
     this.audioSystem = new AudioSystem();
     this.audioLoader = new AudioLoader();
-    this.audioSystem.setConvolver(new ConvolverReverb(this.audioSystem, this.audioLoader));
+    this.convolver = new ConvolverReverb(this.audioSystem, this.audioLoader);
+    this.audioSystem.setConvolver(this.convolver);
 
     this.load();
   }
@@ -51,8 +54,11 @@ class App extends React.Component {
         <div className="column">
           <SampleChannel sampleName={'crash'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
         </div>
-          <div className="column">
+        <div className="column">
           <SampleChannel sampleName={'hat'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
+        </div>
+        <div className="column">
+          <MixerChannel convolver={this.convolver}/>
         </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
       </div>
