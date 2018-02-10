@@ -49,13 +49,14 @@ export default class BasicAnalyzer extends React.Component<Props, State> {
 
         ctx.beginPath();
 
-        const sliceWidth = this.canvas.width * 1.0 / analyser.getBufferSize();
+        const bufferSize = analyser.getBufferSize();
+        const sliceWidth = this.canvas.width * 1.0 / bufferSize;
         const halfCanvasHeight = this.canvas.height / 2;
         const canvasWidth = this.canvas.width;
 
         let x = 0;
 
-        for (let i = 0; i < analyser.getBufferSize(); i++) {
+        for (let i = 0; i < bufferSize; i++) {
 
             const v = dataArray[i] / 128.0;
             const y = v * halfCanvasHeight;
