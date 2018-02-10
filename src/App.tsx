@@ -42,7 +42,7 @@ class App extends React.Component {
 
     this.barAnalyser = new AnalyzerModel(
       this.audioSystem.channelInput(), 
-      this.audioSystem.audioContext().createAnalyser(), 128);
+      this.audioSystem.audioContext().createAnalyser(), 64);
 
     this.load();
   }

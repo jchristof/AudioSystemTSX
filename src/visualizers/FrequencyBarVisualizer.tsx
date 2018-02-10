@@ -45,18 +45,17 @@ export default class FrequencyBarVisualizer extends React.Component<Props, State
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         const bufferSize = analyser.getBufferSize();
-        // const halfCanvasHeight = this.canvas.height / 2;
         const canvasWidth = this.canvas.width;
+        const canvasHeight = this.canvas.height;
 
-        var barWidth = (canvasWidth / bufferSize) * 2.5;
-        var barHeight;
-        var x = 0;
+        const barWidth = (canvasWidth / bufferSize) * 2.5;
+        let x = 0;
 
-        for (var i = 0; i < bufferSize; i++) {
-            barHeight = dataArray[i];
+        for (let i = 0; i < bufferSize; i++) {
+            const barHeight = dataArray[i] / 2;
 
             ctx.fillStyle = 'rgb(0,0,0)';
-            ctx.fillRect(x, this.canvas.height - barHeight / 2, barWidth, barHeight / 2);
+            ctx.fillRect(x, canvasHeight - barHeight, barWidth, barHeight);
 
             x += barWidth + 1;
       }
