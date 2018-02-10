@@ -19,19 +19,23 @@ type State = {
 };
 
 export default class SampleChannel extends React.Component<Props, State> {
-    readonly bufferSource: AudioBufferSourceNode;
-    readonly channelGain: GainNode;
-    readonly delay: Delay;
 
-    audioBuffer: AudioBuffer;
-    volume = .5;
+    private audioBuffer: AudioBuffer;
+    private volume = .5;
+
+    private readonly channelGain: GainNode;
+    private readonly channelPan: StereoPannerNode; 
+    private readonly delay: Delay;
 
     constructor(props: Props) {
         super(props);
         this.channelGain = props.audioSystem.audioContext().createGain();
         this.channelGain.gain.value = this.volume;
-        this.channelGain.connect(this.props.audioSystem.channelInput());
 
+        this.channelPan = props.audioSystem.audioContext().createStereoPanner();
+        this.channelGain.connect(this.channelPan);
+        this.channelPan.connect(this.props.audioSystem.channelInput());
+        
         this.delay = new Delay(props.audioSystem);
         this.delay.setOutput(this.channelGain); 
     }
@@ -66,7 +70,14 @@ export default class SampleChannel extends React.Component<Props, State> {
                         onChange={(event: any) => this.delay.toggleOutput(event.currentTarget.checked)}
                     />
                 </div>
-
+                <div className="SampleChannel-border">
+                <em>pan</em>
+                <Dial 
+                    id={'pan'} 
+                    onValueChanged={(id, value) => this.setPan(id, value)} 
+                    dialSize={50}
+                />
+                </div>
                 <div className="SampleChannel-border">
                     <b>output volume</b>
                     <Dial 
@@ -100,5 +111,9 @@ export default class SampleChannel extends React.Component<Props, State> {
     private setVolume(id: string, value: number) {
         this.volume = value;
         console.log('volume changed: ' + value);
+    }
+
+    private setPan(id: string, value: number) {
+        this.channelPan.pan.value = (value * 2.0) - 1.0;
     }
 }
