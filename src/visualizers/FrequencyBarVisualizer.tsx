@@ -38,7 +38,7 @@ export default class FrequencyBarVisualizer extends React.Component<Props, State
         this.drawvisual = window.requestAnimationFrame(this.draw.bind(this));
 
         const analyser = this.props.analyzerModel;
-        const dataArray = analyser.getDataArray();
+        const dataArray = analyser.getFrequencyDataArray();
         const ctx = this.ctx;
 
         ctx.fillStyle = 'rgb(200, 200, 200)';

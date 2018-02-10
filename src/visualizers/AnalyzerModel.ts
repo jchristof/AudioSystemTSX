@@ -15,8 +15,13 @@ export default class AnalyzerModel {
         return this.analyserNode.frequencyBinCount;
     }
 
-    getDataArray(): Uint8Array {
+    getWaveformDataArray(): Uint8Array {
         this.analyserNode.getByteTimeDomainData(this.dataArray);
+        return this.dataArray;
+    }
+
+    getFrequencyDataArray(): Uint8Array {
+        this.analyserNode.getByteFrequencyData(this.dataArray);
         return this.dataArray;
     }
 }
