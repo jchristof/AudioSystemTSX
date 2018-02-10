@@ -1,13 +1,8 @@
-import AudioSystem from '../AudioSystem';
 
 export default class AnalyzerModel {
-    private readonly audioNode: AudioNode;
-    private readonly analyserNode: AnalyserNode;
     private dataArray: Uint8Array;
 
-    constructor(audiosystem: AudioSystem) {
-        this.audioNode = audiosystem.channelInput();
-        this.analyserNode = audiosystem.audioContext().createAnalyser();
+    constructor(private audioNode: AudioNode, private analyserNode: AnalyserNode) {
         this.audioNode.connect(this.analyserNode);
 
         this.analyserNode.fftSize = 2048;

@@ -34,7 +34,9 @@ class App extends React.Component {
     this.audioLoader = new AudioLoader();
     this.convolver = new ConvolverReverb(this.audioSystem, this.audioLoader);
     this.audioSystem.setConvolver(this.convolver);
-    this.audioAnalyser = new AnalyzerModel(this.audioSystem);
+    this.audioAnalyser = new AnalyzerModel(
+      this.audioSystem.channelInput(), 
+      this.audioSystem.audioContext().createAnalyser());
 
     this.load();
   }
@@ -64,8 +66,9 @@ class App extends React.Component {
         <div className="column">
           <MixerChannel convolver={this.convolver}/>
         </div>
-        <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
+        
         <BasicAnalyzer analyzerModel={this.audioAnalyser}/>
+        <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
       </div>
     );
   }

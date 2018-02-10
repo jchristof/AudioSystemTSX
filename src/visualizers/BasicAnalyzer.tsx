@@ -56,7 +56,7 @@ export default class BasicAnalyzer extends React.Component<Props, State> {
 
         let x = 0;
 
-        for (let i = 0; i < bufferSize; i++) {
+        for (let i = 0; i < analyser.getBufferSize(); i++) {
 
             const v = dataArray[i] / 128.0;
             const y = v * halfCanvasHeight;
@@ -76,7 +76,7 @@ export default class BasicAnalyzer extends React.Component<Props, State> {
     render() {
 
         const style = {
-            position: 'absolute',
+            position: 'static',
             width: '300px',
             height: '200px'
           };
