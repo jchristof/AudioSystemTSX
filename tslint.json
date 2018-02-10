@@ -13,7 +13,6 @@
             true,
             "check-space"
         ],
-        "curly": true,
         "eofline": false,
         "forin": true,
         "indent": [ true, "spaces" ],
@@ -47,7 +46,6 @@
         "one-line": [
             true,
             "check-catch",
-            "check-else",
             "check-open-brace",
             "check-whitespace"
         ],

@@ -11,8 +11,9 @@ export default class AnalyzerModel {
         this.audioNode.connect(this.analyserNode);
 
         this.analyserNode.fftSize = 2048;
-        let bufferArray = this.analyserNode.frequencyBinCount;
-        this.dataArray = new Uint8Array(bufferArray);
+        const bufferArraySize = this.analyserNode.frequencyBinCount;
+        this.dataArray = new Uint8Array(bufferArraySize);
+        console.log(`analyser buffer size ${bufferArraySize}`);
     }
 
     getBufferSize() {
