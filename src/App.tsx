@@ -5,6 +5,8 @@ import AudioLoader from './AudioLoader';
 import SampleChannel from './controls/SampleChannel';
 import ConvolverReverb from './effects/ConvolverReverb';
 import MixerChannel from './controls/MixerChannel';
+import BasicAnalyzer from './visualizers/BasicAnalyzer';
+import AnalyzerModel from './visualizers/AnalyzerModel';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -24,6 +26,7 @@ class App extends React.Component {
   private audioSystem: AudioSystem;
   private audioLoader: AudioLoader;
   private convolver: ConvolverReverb;
+  private audioAnalyser: AnalyzerModel;
 
   constructor(props: {}, context?: any) {
     super(props, context);
@@ -31,6 +34,7 @@ class App extends React.Component {
     this.audioLoader = new AudioLoader();
     this.convolver = new ConvolverReverb(this.audioSystem, this.audioLoader);
     this.audioSystem.setConvolver(this.convolver);
+    this.audioAnalyser = new AnalyzerModel(this.audioSystem);
 
     this.load();
   }
@@ -61,6 +65,7 @@ class App extends React.Component {
           <MixerChannel convolver={this.convolver}/>
         </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
+        <BasicAnalyzer analyzerModel={this.audioAnalyser}/>
       </div>
     );
   }
