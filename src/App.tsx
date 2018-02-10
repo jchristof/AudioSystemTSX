@@ -7,6 +7,7 @@ import ConvolverReverb from './effects/ConvolverReverb';
 import MixerChannel from './controls/MixerChannel';
 import BasicAnalyzer from './visualizers/BasicAnalyzer';
 import AnalyzerModel from './visualizers/AnalyzerModel';
+import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -26,7 +27,8 @@ class App extends React.Component {
   private audioSystem: AudioSystem;
   private audioLoader: AudioLoader;
   private convolver: ConvolverReverb;
-  private audioAnalyser: AnalyzerModel;
+  private waveAnalyser: AnalyzerModel;
+  private barAnalyser: AnalyzerModel;
 
   constructor(props: {}, context?: any) {
     super(props, context);
@@ -34,9 +36,13 @@ class App extends React.Component {
     this.audioLoader = new AudioLoader();
     this.convolver = new ConvolverReverb(this.audioSystem, this.audioLoader);
     this.audioSystem.setConvolver(this.convolver);
-    this.audioAnalyser = new AnalyzerModel(
+    this.waveAnalyser = new AnalyzerModel(
       this.audioSystem.channelInput(), 
-      this.audioSystem.audioContext().createAnalyser());
+      this.audioSystem.audioContext().createAnalyser(), 2048);
+
+    this.barAnalyser = new AnalyzerModel(
+      this.audioSystem.channelInput(), 
+      this.audioSystem.audioContext().createAnalyser(), 128);
 
     this.load();
   }
@@ -66,8 +72,10 @@ class App extends React.Component {
         <div className="column">
           <MixerChannel convolver={this.convolver}/>
         </div>
-        
-        <BasicAnalyzer analyzerModel={this.audioAnalyser}/>
+        <div>
+          <BasicAnalyzer analyzerModel={this.waveAnalyser}/>
+          <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
+        </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
       </div>
     );

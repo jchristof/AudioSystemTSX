@@ -2,10 +2,10 @@
 export default class AnalyzerModel {
     private dataArray: Uint8Array;
 
-    constructor(private audioNode: AudioNode, private analyserNode: AnalyserNode) {
+    constructor(private audioNode: AudioNode, private analyserNode: AnalyserNode, fftSize: number) {
         this.audioNode.connect(this.analyserNode);
 
-        this.analyserNode.fftSize = 2048;
+        this.analyserNode.fftSize = fftSize;
         const bufferArraySize = this.analyserNode.frequencyBinCount;
         this.dataArray = new Uint8Array(bufferArraySize);
         console.log(`analyser buffer size ${bufferArraySize}`);
