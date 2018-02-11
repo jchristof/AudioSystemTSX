@@ -11,11 +11,11 @@ type State = {
 };
 
 export default class Dial extends React.Component<Props, State> {
-    readonly id: string;
-    readonly step = 5;
-    readonly minRotationAngle = -135;
-    readonly maxRotationAngle = 135;
-    readonly absRange = Math.abs(this.minRotationAngle) + Math.abs(this.maxRotationAngle);
+    private readonly id: string;
+    private readonly step = 5;
+    private readonly minRotationAngle = -135;
+    private readonly maxRotationAngle = 135;
+    private readonly absRange = Math.abs(this.minRotationAngle) + Math.abs(this.maxRotationAngle);
 
     constructor(props: Props) {
         super(props);
@@ -27,6 +27,7 @@ export default class Dial extends React.Component<Props, State> {
       }
 
     onMouseWheel(event: React.WheelEvent<HTMLDivElement>): void {
+        event.preventDefault();
         // capture the deltaY value here becase React will recycle the event before setState() executes
         const deltaY = this.step * event.deltaY / 100;
         
@@ -50,7 +51,7 @@ export default class Dial extends React.Component<Props, State> {
                     id="svg_4" 
                     cy="50" 
                     cx="50" 
-                    stroke-width="1.5" 
+                    strokeWidth="1.5" 
                     stroke="#000000" 
                     fill="#3a3a3a"
                 />
@@ -60,7 +61,7 @@ export default class Dial extends React.Component<Props, State> {
                     id="svg_19" 
                     cy="17.18181" 
                     cx="50" 
-                    stroke-width="1.5" 
+                    strokeWidth="1.5" 
                     stroke="#000000" 
                     fill="#565656"
                 />
