@@ -8,6 +8,7 @@ import MixerChannel from './controls/MixerChannel';
 import BasicAnalyzer from './visualizers/BasicAnalyzer';
 import AnalyzerModel from './visualizers/AnalyzerModel';
 import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
+import KeyController from './controls/KeyController';
 
 type Props = {
   clickFunction: (freq: number) => void;
@@ -77,6 +78,7 @@ class App extends React.Component {
           <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
         </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
+        <KeyController />
       </div>
     );
   }
