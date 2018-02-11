@@ -9,7 +9,7 @@ type Props = {
 type State = {};
 
 export default class KeyController extends React.Component<Props, State> {
-    onClick(event: MouseEvent<HTMLUListElement>) {
+    onMouseDown(event: MouseEvent<HTMLUListElement>) {
         let note = (event.target as any).dataset.key;
         
         this.props.audioSystem.note(27.5 * Math.pow(2, ((note - 21) / 12)));
@@ -17,7 +17,7 @@ export default class KeyController extends React.Component<Props, State> {
 
     render() {
         return (
-            <ul className="piano" onClick={(event: MouseEvent<HTMLUListElement>) => this.onClick(event)}>
+            <ul className="piano" onMouseDown={(event: MouseEvent<HTMLUListElement>) => this.onMouseDown(event)}>
                 <li className="white" data-key="28"/>
                 <li className="black" data-key="29"/>
                 <li className="white" data-key="30"/>
