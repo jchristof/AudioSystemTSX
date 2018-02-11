@@ -78,7 +78,7 @@ class App extends React.Component {
           <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
         </div>
         <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
-        <KeyController />
+        <KeyController audioSystem={this.audioSystem}/>
       </div>
     );
   }

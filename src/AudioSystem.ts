@@ -55,10 +55,10 @@ export default class  AudioSystem {
     }
 
     note(freq: number) {
-        var oscillator = this.context.createOscillator();
+        const oscillator = this.context.createOscillator();
         oscillator.frequency.value = freq;
         oscillator.connect(this.gain);
-        var now = (this.context as any).currentTime;
+        const now = (this.context as any).currentTime;
         oscillator.frequency.value = freq;
         oscillator.start(now);
         oscillator.stop(now + 0.5);

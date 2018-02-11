@@ -1,13 +1,23 @@
 import * as React from 'react';
 import './KeyController.css';
+import { MouseEvent } from 'react';
+import AudioSystem from '../AudioSystem';
 
-type Props = {};
+type Props = {
+    audioSystem: AudioSystem
+};
 type State = {};
 
-export default class Dial extends React.Component<Props, State> {
+export default class KeyController extends React.Component<Props, State> {
+    onClick(event: MouseEvent<HTMLUListElement>) {
+        let note = (event.target as any).dataset.key;
+        
+        this.props.audioSystem.note(27.5 * Math.pow(2, ((note - 21) / 12)));
+    }
+
     render() {
         return (
-            <ul className="piano">
+            <ul className="piano" onClick={(event: MouseEvent<HTMLUListElement>) => this.onClick(event)}>
                 <li className="white" data-key="28"/>
                 <li className="black" data-key="29"/>
                 <li className="white" data-key="30"/>
