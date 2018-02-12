@@ -59,6 +59,5 @@ export default class  AudioSystem {
                 oscillator.stop();
             }, 
             6000);
-        // oscillator.stop(now + 1);
     }
 }
