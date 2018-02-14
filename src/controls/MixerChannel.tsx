@@ -11,7 +11,7 @@ type State = {
 };
 
 export default class MixerChannel extends React.Component<Props, State> {
-    
+
     onReverMixChanged(value: number) {
         this.props.convolver.setGain(value);
     }
@@ -25,7 +25,7 @@ export default class MixerChannel extends React.Component<Props, State> {
                     <Dial 
                         id={'time'} 
                         onValueChanged={(id, value) => { this.onReverMixChanged(value); }} 
-                        dialSize={50}
+                        dialSize={30}
                     />
             </div>
         );

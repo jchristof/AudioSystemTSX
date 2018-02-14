@@ -17,6 +17,10 @@ export default class Dial extends React.Component<Props, State> {
     private readonly maxRotationAngle = 135;
     private readonly absRange = Math.abs(this.minRotationAngle) + Math.abs(this.maxRotationAngle);
 
+    private readonly size: number;
+    private readonly radius: number;
+    private readonly smRadius: number;
+
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -24,6 +28,9 @@ export default class Dial extends React.Component<Props, State> {
         };
 
         this.id = props.id;
+        this.size = props.dialSize * 2;
+        this.radius = props.dialSize - 1.5;
+        this.smRadius = props.dialSize * 0.1;
       }
 
     onMouseWheel(event: React.WheelEvent<HTMLDivElement>): void {
@@ -43,28 +50,26 @@ export default class Dial extends React.Component<Props, State> {
     render() {
         return (
             <div onWheel={(e) => this.onMouseWheel(e)}>
-            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-            <g transform={`rotate(${this.state.angle}, 50, 50)`}>
-                    <ellipse 
-                        ry="46.36365" 
-                        rx="46.27274" 
-                        id="svg_4" 
-                        cy="50" 
-                        cx="50" 
-                        strokeWidth="1.5" 
-                        stroke="#000000" 
-                        fill="#3a3a3a"
-                    />
-                    <ellipse 
-                        ry="6.81818" 
-                        rx="6.81818" 
-                        id="svg_19" 
-                        cy="17.18181" 
-                        cx="50" 
-                        strokeWidth="1.5" 
-                        stroke="#000000" 
-                        fill="#565656"
-                    />
+            <svg width={this.size} height={this.size} xmlns="http://www.w3.org/2000/svg">
+            <g transform={`rotate(${this.state.angle}, ${this.size / 2}, ${this.size / 2})`}>
+                <ellipse 
+                    ry={this.radius}
+                    rx={this.radius}
+                    cy={this.size / 2}
+                    cx={this.size / 2}
+                    strokeWidth="1.5" 
+                    stroke="#000000" 
+                    fill="#3a3a3a"
+                />
+                <ellipse 
+                    ry={this.smRadius} 
+                    rx={this.smRadius} 
+                    cy={this.smRadius * 2}
+                    cx={this.size / 2} 
+                    strokeWidth="1.5" 
+                    stroke="#000000" 
+                    fill="#565656"
+                />
             </g>
             </svg>
             </div>

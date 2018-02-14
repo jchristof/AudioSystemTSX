@@ -50,19 +50,19 @@ export default class SampleChannel extends React.Component<Props, State> {
                     <Dial 
                         id={'time'} 
                         onValueChanged={(id, value) => this.delay.setDelayTime(value)} 
-                        dialSize={50}
+                        dialSize={30}
                     />
                     <em>feedback</em>
                     <Dial 
                         id={'feedback'} 
                         onValueChanged={(id, value) => this.delay.setDelayFeedback(value)} 
-                        dialSize={50}
+                        dialSize={30}
                     />
                     <em>output</em>
                     <Dial 
                         id={'output'} 
                         onValueChanged={(id, value) => this.delay.setDaylayOutput(value)} 
-                        dialSize={50}
+                        dialSize={30}
                     />
                     <input 
                         type="checkbox"
@@ -75,7 +75,7 @@ export default class SampleChannel extends React.Component<Props, State> {
                 <Dial 
                     id={'pan'} 
                     onValueChanged={(id, value) => this.setPan(id, value)} 
-                    dialSize={50}
+                    dialSize={30}
                 />
                 </div>
                 <div className="SampleChannel-border">
@@ -83,7 +83,7 @@ export default class SampleChannel extends React.Component<Props, State> {
                     <Dial 
                         id={this.props.sampleName} 
                         onValueChanged={(id, value) => this.setVolume(id, value)} 
-                        dialSize={50}
+                        dialSize={30}
                     />
                 </div>
                 <SampleButton 

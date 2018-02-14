@@ -10,19 +10,21 @@ import AnalyzerModel from './visualizers/AnalyzerModel';
 import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
 import KeyController from './controls/KeyController';
 
-type Props = {
-  clickFunction: (freq: number) => void;
-  text?: string;
-};
-type State = {};
+// type Props = {
+//   clickFunction: (freq: number) => void;
+//   text?: string;
+// };
+// type State = {};
 
-class Button extends React.Component<Props, State> {
-  render() {
-    return (
-      <button onClick={() => this.props.clickFunction(220)}>{this.props.text}</button>
-    );
-  }
-}
+// class Button extends React.Component<Props, State> {
+//   render() {
+//     return (
+//       <button onClick={() => this.props.clickFunction(220)}>{this.props.text}</button>
+//     );
+//   }
+// }
+
+// <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
 
 class App extends React.Component {
   private audioSystem: AudioSystem;
@@ -77,7 +79,6 @@ class App extends React.Component {
           <BasicAnalyzer analyzerModel={this.waveAnalyser}/>
           <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
         </div>
-        <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
         <KeyController audioSystem={this.audioSystem}/>
       </div>
     );
