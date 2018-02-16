@@ -18,8 +18,8 @@ export default class Dial extends React.Component<Props, State> {
     private readonly absRange = Math.abs(this.minRotationAngle) + Math.abs(this.maxRotationAngle);
 
     private readonly size: number;
+    private readonly center: number;
     private readonly radius: number;
-    private readonly smRadius: number;
 
     constructor(props: Props) {
         super(props);
@@ -29,8 +29,8 @@ export default class Dial extends React.Component<Props, State> {
 
         this.id = props.id;
         this.size = props.dialSize * 2;
-        this.radius = props.dialSize - 1.5;
-        this.smRadius = props.dialSize * 0.1;
+        this.center = props.dialSize;
+        this.radius = props.dialSize;
       }
 
     onMouseWheel(event: React.WheelEvent<HTMLDivElement>): void {
@@ -50,28 +50,28 @@ export default class Dial extends React.Component<Props, State> {
     render() {
         return (
             <div onWheel={(e) => this.onMouseWheel(e)}>
-            <svg width={this.size} height={this.size} xmlns="http://www.w3.org/2000/svg">
-            <g transform={`rotate(${this.state.angle}, ${this.size / 2}, ${this.size / 2})`}>
-                <ellipse 
-                    ry={this.radius}
-                    rx={this.radius}
-                    cy={this.size / 2}
-                    cx={this.size / 2}
-                    strokeWidth="1.5" 
-                    stroke="#000000" 
-                    fill="#3a3a3a"
-                />
-                <ellipse 
-                    ry={this.smRadius} 
-                    rx={this.smRadius} 
-                    cy={this.smRadius * 2}
-                    cx={this.size / 2} 
-                    strokeWidth="1.5" 
-                    stroke="#000000" 
-                    fill="#565656"
-                />
-            </g>
-            </svg>
+                <svg width={this.size} height={this.size} xmlns="http://www.w3.org/2000/svg">
+                    <g transform={`rotate(${this.state.angle}, ${this.size / 2}, ${this.size / 2})`}>
+                            <circle
+                                fill="#999999"
+                                r={this.radius}
+                                cy={this.center}
+                                cx={this.center}
+                            />
+                            <circle
+                                cy={this.center}
+                                cx={this.center}
+                                r={this.radius - 4}
+                            />
+                            <rect
+                                y="4"
+                                x={this.center}
+                                height={this.radius / 2}
+                                width="2"
+                                fill="#ffffff" 
+                            />
+                    </g>
+                </svg>
             </div>
         );
     }
