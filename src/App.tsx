@@ -9,6 +9,7 @@ import BasicAnalyzer from './visualizers/BasicAnalyzer';
 import AnalyzerModel from './visualizers/AnalyzerModel';
 import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
 import KeyController from './controls/KeyController';
+import Sequencer from './Sequencer';
 
 // type Props = {
 //   clickFunction: (freq: number) => void;
@@ -32,7 +33,7 @@ class App extends React.Component {
   private convolver: ConvolverReverb;
   private waveAnalyser: AnalyzerModel;
   private barAnalyser: AnalyzerModel;
-
+  private sequencer: Sequencer;
   constructor(props: {}, context?: any) {
     super(props, context);
     this.audioSystem = new AudioSystem();
@@ -48,6 +49,9 @@ class App extends React.Component {
       this.audioSystem.audioContext().createAnalyser(), 64);
 
     this.load();
+
+    this.sequencer = new Sequencer(this.audioSystem);
+    this.sequencer.start();
   }
 
   async load() {

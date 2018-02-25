@@ -24,7 +24,7 @@ export default class FrequencyBarVisualizer extends React.Component<Props, State
     }
 
     componentDidMount() {
-        this.drawvisual = window.requestAnimationFrame(this.draw.bind(this));
+        this.drawvisual = window.requestAnimationFrame((t: number) => this.draw(t));
       }
 
     componentWillUnmount() {
@@ -35,7 +35,7 @@ export default class FrequencyBarVisualizer extends React.Component<Props, State
         if (this.ctx == null) 
             return;
         
-        this.drawvisual = window.requestAnimationFrame(this.draw.bind(this));
+        this.drawvisual = window.requestAnimationFrame((t: number) => this.draw(t));
 
         const analyser = this.props.analyzerModel;
         const dataArray = analyser.getFrequencyDataArray();
