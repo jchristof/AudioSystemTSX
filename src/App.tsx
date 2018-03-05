@@ -9,7 +9,8 @@ import BasicAnalyzer from './visualizers/BasicAnalyzer';
 import AnalyzerModel from './visualizers/AnalyzerModel';
 import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
 import KeyController from './controls/KeyController';
-import Sequencer from './Sequencer';
+import Sequencer from './sequencer/Sequencer';
+import SequencerControl from './sequencer/SequencerControl';
 
 // type Props = {
 //   clickFunction: (freq: number) => void;
@@ -28,12 +29,14 @@ import Sequencer from './Sequencer';
 // <Button clickFunction={(freq) => this.audioSystem.note(freq)} text="220"/>
 
 class App extends React.Component {
+
   private audioSystem: AudioSystem;
   private audioLoader: AudioLoader;
   private convolver: ConvolverReverb;
   private waveAnalyser: AnalyzerModel;
   private barAnalyser: AnalyzerModel;
   private sequencer: Sequencer;
+
   constructor(props: {}, context?: any) {
     super(props, context);
     this.audioSystem = new AudioSystem();
@@ -84,6 +87,9 @@ class App extends React.Component {
           <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
         </div>
         <KeyController audioSystem={this.audioSystem}/>
+        <div className="column">
+          <SequencerControl  sequencer={this.sequencer}/>
+        </div>
       </div>
     );
   }

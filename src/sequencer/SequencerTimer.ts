@@ -1,7 +1,7 @@
 import AudioSystem from '../AudioSystem';
 
 export default class SequencerTimer {
-    private _tempo = 120.0;
+    private _tempo = 60.0;
     private current16thNote = 0;
     private futureTickTime: number;
     private secondsPerBeat = 60 / this.tempo;
