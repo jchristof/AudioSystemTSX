@@ -11,6 +11,7 @@ import FrequencyBarAnalyser from './visualizers/FrequencyBarVisualizer';
 import KeyController from './controls/KeyController';
 import Sequencer from './sequencer/Sequencer';
 import SequencerControl from './sequencer/SequencerControl';
+import BabylonScene from './visualizers/babylon/PageWithScene';
 
 // type Props = {
 //   clickFunction: (freq: number) => void;
@@ -67,6 +68,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <BabylonScene />
         <div className="column">
           <SampleChannel sampleName={'snare'} audioSystem={this.audioSystem} audioLoader={this.audioLoader}/>
         </div>
@@ -90,6 +92,7 @@ class App extends React.Component {
         <div className="column">
           <SequencerControl  sequencer={this.sequencer}/>
         </div>
+        
       </div>
     );
   }

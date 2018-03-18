@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   height="100"
-   width="100"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
    id="svg8"
-   version="1.1">
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="knob_ex.svg"
+   width="100"
+   height="100">
   <defs
      id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="119.28571"
+     inkscape:cy="76.655819"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg8"
+     showgrid="false"
+     showborder="true"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="false" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -24,26 +51,27 @@
     </rdf:RDF>
   </metadata>
   <g
-     height="100"
-     width="100"
-     id="layer1">
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     width="100">
     <circle
+       id="circle4508"
+       cx="50"
+       cy="50"
        style="fill:#999999"
-       r="50"
-       cy="50"
-       cx="50"
-       id="circle4508" />
+       r="50" />
     <circle
-       id="circle4518"
-       cx="50"
        cy="50"
+       cx="50"
+       id="circle4518"
        r="46" />
     <rect
-       y="0"
-       x="50"
-       height="50"
-       width="2"
+       style="fill:#ffffff"
        id="rect4516"
-       style="fill:#ffffff" />
+       width="2"
+       height="50"
+       x="50"
+       y="0" />
   </g>
 </svg>
