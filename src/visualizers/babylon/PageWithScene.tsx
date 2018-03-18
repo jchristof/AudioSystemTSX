@@ -1,8 +1,11 @@
 import * as React from 'react';
 import * as BABYLON from 'babylonjs';
+import { SkyBox } from './SkyBox';
 import { BabylonScene, SceneEventArgs } from './BabylonScene';
 
 export default class PageWithScene extends React.Component<{}, {}> {
+    public skybox: SkyBox;
+
     onSceneMount = (e: SceneEventArgs) => {
         const { canvas, scene, engine } = e;
 
@@ -29,6 +32,8 @@ export default class PageWithScene extends React.Component<{}, {}> {
 
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+
+        this.skybox = new SkyBox(scene, canvas as BABYLON.ISize);
 
         engine.runRenderLoop(() => {
             if (scene) {
