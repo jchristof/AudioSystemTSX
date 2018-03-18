@@ -1,9 +1,11 @@
 export class SkyboxShader {
     private shaderMaterial: BABYLON.ShaderMaterial;
+    private readonly customVertexShader = 'customVertexShader';
+    private readonly customFragmentShader = 'customFragmentShader';
 
     constructor(scene: BABYLON.Scene, size: BABYLON.ISize) {
-        let customVertexShader = 'customVertexShader';
-        BABYLON.Effect.ShadersStore[customVertexShader] = `
+        
+        BABYLON.Effect.ShadersStore[this.customVertexShader] = `
             precision mediump float;
 
             // Attributes
@@ -25,8 +27,7 @@ export class SkyboxShader {
             }
             `;
         
-        let customFragmentShader = 'customFragmentShader';
-        BABYLON.Effect.ShadersStore[customFragmentShader] = `
+        BABYLON.Effect.ShadersStore[this.customFragmentShader] = `
 
             #ifdef GL_ES
             precision mediump float;
@@ -45,10 +46,9 @@ export class SkyboxShader {
 
             float sdBox( vec2 p, vec2 b )
             {
-            vec2 d = abs(p) - b;
-            return min(max(d.x,d.y),0.0) + length(max(d,0.0));
+                vec2 d = abs(p) - b;
+                return min(max(d.x,d.y),0.0) + length(max(d,0.0));
             }
-
 
             vec3 nrand3( vec2 co )
             {
@@ -134,7 +134,7 @@ export class SkyboxShader {
 
                 float fog = min(1.0, (1.0 / float(MAX_MARCH)) * float(march))*1.0;
                 vec3  fog2 = 0.01 * vec3(3, 4, 5) * total_d;
-                gl_FragColor = vec4(vec3(0.15, 0.15, 3)*fog + fog2, 1.0);
+                gl_FragColor = vec4(vec3(0.15, 0.15, 0.15)*fog + fog2, 1.0);
             } `;
 
         const shaderMaterial = new BABYLON.ShaderMaterial(
@@ -161,7 +161,7 @@ export class SkyboxShader {
         let time = 0;
         setInterval( 
             () => {
-                time += .01;
+                time += .005;
                 shaderMaterial.setFloat('time', time);
             },
             10);
@@ -183,8 +183,8 @@ export class SkyboxShader {
     }
 
     dispose(): void {
-        // BABYLON.Effect.ShadersStore["customVertexShader"] = undefined;
-        // BABYLON.Effect.ShadersStore["customFragmentShader"] = undefined;
+        delete BABYLON.Effect.ShadersStore[this.customVertexShader];
+        delete BABYLON.Effect.ShadersStore[this.customFragmentShader];
         this.shaderMaterial.dispose();
     }
 }

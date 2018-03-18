@@ -11,6 +11,7 @@ export type SceneProps = {
   engineOptions?: BABYLON.EngineOptions,
   adaptToDeviceRatio?: boolean,
   onSceneMount?: (args: SceneEventArgs) => void,
+  onResize?: () => void,
   width?: number,
   height?: number
 };
@@ -24,6 +25,8 @@ export class BabylonScene extends React.Component<SceneProps & React.HTMLAttribu
   onResizeWindow = () => {
     if (this.engine) {
       this.engine.resize();
+      if (this.props.onResize)
+        this.props.onResize();
     }
   }
 
