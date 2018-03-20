@@ -41,7 +41,7 @@ export default class FrequencyBarVisualizer extends React.Component<Props, State
         const dataArray = analyser.getFrequencyDataArray();
         const ctx = this.ctx;
 
-        ctx.fillStyle = 'rgb(200, 200, 200)';
+        ctx.fillStyle = 'rgba(200, 200, 200, 0.1)';
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         const bufferSize = analyser.getBufferSize();

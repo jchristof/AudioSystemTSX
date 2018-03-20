@@ -41,11 +41,11 @@ export default class BasicAnalyzer extends React.Component<Props, State> {
         const dataArray = analyser.getWaveformDataArray();
         const ctx = this.ctx;
 
-        ctx.fillStyle = 'rgb(200, 200, 200)';
+        ctx.fillStyle = 'rgba(200, 200, 200, 0.1)';
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         ctx.lineWidth = 1;
-        ctx.strokeStyle = 'rgb(0, 0, 0)';
+        ctx.strokeStyle = 'rgba(0, 0, 0, .5)';
 
         ctx.beginPath();
 

@@ -36,7 +36,7 @@ export default class Dial extends React.Component<Props, State> {
     onMouseWheel(event: React.WheelEvent<HTMLDivElement>): void {
         event.preventDefault();
         // capture the deltaY value here becase React will recycle the event before setState() executes    
-        const deltaY = this.normalizeWheel(event).spinY * -this.step;
+        const deltaY = this.normalizeWheel(event).spinY * this.step;
 
         this.setState((prevState: State, props: Props) => {
             const newAngle = Math.min(Math.max(prevState.angle - deltaY, this.minRotationAngle), this.maxRotationAngle);
