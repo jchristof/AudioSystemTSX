@@ -23,6 +23,7 @@ export default class SequencerControl extends React.Component<Props, State> {
     render() {
         return (
             <div className="SampleChannel-border">
+            <br/>
             <b>sequencer</b>
             <br/>
             <em>tempo</em>

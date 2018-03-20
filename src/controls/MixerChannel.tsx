@@ -18,7 +18,7 @@ export default class MixerChannel extends React.Component<Props, State> {
 
     render() {
         return (
-            <div>
+            <div className="SampleChannel-border">
                 <b>reverb</b>
                     <br/>
                     <em>mix</em>

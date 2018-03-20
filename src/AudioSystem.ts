@@ -33,7 +33,7 @@ export default class  AudioSystem {
 
     playback(buffer: AudioBuffer) {
         const bufferSource = this.context.createBufferSource();
-        bufferSource.connect(this.context.destination);
+        bufferSource.connect(this.gain);
 
         bufferSource.buffer = buffer;
         bufferSource.start();
@@ -43,7 +43,7 @@ export default class  AudioSystem {
         const oscillator = this.context.createOscillator();
         const gain = this.context.createGain();
         gain.connect(this.gain);
-        gain.gain.value = 1;
+        gain.gain.value = .75;
         oscillator.frequency.value = freq;
         oscillator.connect(gain);
         const now = (this.context as any).currentTime;

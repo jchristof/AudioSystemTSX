@@ -63,6 +63,9 @@ class App extends React.Component {
     await this.audioLoader.load('crash', 'audio/crash.wav');
     await this.audioLoader.load('kick', 'audio/kick.wav');
     await this.audioLoader.load('hat', 'audio/hat.wav');  
+    await this.audioLoader.load('anewworld', 'audio/a new world.mp3');
+
+    this.audioSystem.playback(this.audioLoader.audio('anewworld'));
   }
 
   render() {
@@ -84,15 +87,17 @@ class App extends React.Component {
         <div className="column">
           <MixerChannel convolver={this.convolver}/>
         </div>
-        <div>
+        <div >
           <BasicAnalyzer analyzerModel={this.waveAnalyser}/>
           <FrequencyBarAnalyser analyzerModel={this.barAnalyser}/>
         </div>
-        <KeyController audioSystem={this.audioSystem}/>
-        <div className="column">
-          <SequencerControl  sequencer={this.sequencer}/>
+
+        <div >
+        <KeyController audioSystem={this.audioSystem}/>   
         </div>
-        
+        <div >
+          <SequencerControl  sequencer={this.sequencer}/>
+        </div >
       </div>
     );
   }
