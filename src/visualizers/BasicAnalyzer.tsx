@@ -45,7 +45,7 @@ export default class BasicAnalyzer extends React.Component<Props, State> {
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         ctx.lineWidth = 1;
-        ctx.strokeStyle = 'rgba(0, 0, 0, .5)';
+        ctx.strokeStyle = 'rgba(255, 0, 0, .5)';
 
         ctx.beginPath();
 
