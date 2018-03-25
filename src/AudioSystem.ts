@@ -4,11 +4,21 @@ import ConvolverReverb from './effects/ConvolverReverb';
 export default class  AudioSystem {
     context: AudioContext;
     private gain: GainNode;
+    private mixCompressor: DynamicsCompressorNode;
     
     constructor() {
         this.context = new ((window as any).AudioContext || (window as any).webkitAudioContext)() as AudioContext;   
         this.gain = this.context.createGain();   
-        this.gain.connect(this.context.destination);
+        this.gain.gain.value = 0.5;
+        this.mixCompressor = this.context.createDynamicsCompressor();
+
+        this.mixCompressor.knee.setValueAtTime(40, this.context.currentTime);
+        this.mixCompressor.ratio.setValueAtTime(20, this.context.currentTime);
+        this.mixCompressor.attack.setValueAtTime(0, this.context.currentTime);
+        this.mixCompressor.release.setValueAtTime(0.25, this.context.currentTime);
+
+        this.gain.connect(this.mixCompressor);
+        this.mixCompressor.connect(this.context.destination);
     }
 
     setConvolver(convolver: ConvolverReverb) {
